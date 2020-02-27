@@ -1,7 +1,7 @@
 package com.example.samplelibrary.koindi
 
 import com.imagedemo.Constants
-import com.imagedemo.IUnSplash
+import com.imagedemo.netwrok.IUnSplash
 import okhttp3.OkHttpClient
 import org.koin.dsl.module
 import retrofit2.Retrofit
