@@ -1,6 +1,6 @@
 package com.example.samplelibrary.koindi
 
-import com.imagedemo.helper.SharedPreferenceProvider
+import com.androidhelpers.SharedPreferenceProvider
 import com.imagedemo.viewmodel.UnSplashViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module

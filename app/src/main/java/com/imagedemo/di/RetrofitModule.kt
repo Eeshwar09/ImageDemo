@@ -1,4 +1,4 @@
-package com.example.samplelibrary.koindi
+package com.imagedemo.di
 
 import com.imagedemo.Constants
 import com.imagedemo.netwrok.IUnSplash

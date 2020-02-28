@@ -1,5 +1,6 @@
-package com.imagedemo.helper
+package com.imagedemo.helpers
 
+import com.imagedemo.helper.ProcessThrowable
 import io.reactivex.Flowable
 import io.reactivex.Observable
 import io.reactivex.Single
@@ -48,11 +49,9 @@ inline fun <T> Single<T>.processRequest(
 inline fun <T> Single<T>.processRequest(crossinline onSuccess: (result: T) -> Unit): Disposable {
     return subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(
-            { result ->
-                onSuccess(result)
-            }
-        )
+        .subscribe { result ->
+            onSuccess(result)
+        }
 }
 
 fun <T> Single<T>.processRequest(): Disposable {
@@ -82,11 +81,9 @@ inline fun <T> Flowable<T>.processRequest(
 inline fun <T> Flowable<T>.processRequest(crossinline onNext: (result: T) -> Unit): Disposable {
     return subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(
-            { result ->
-                onNext(result)
-            }
-        )
+        .subscribe { result ->
+            onNext(result)
+        }
 }
 
 fun <T> Flowable<T>.processRequest(): Disposable {
