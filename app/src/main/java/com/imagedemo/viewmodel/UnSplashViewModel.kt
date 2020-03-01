@@ -1,20 +1,21 @@
 package com.imagedemo.viewmodel
 
 import androidx.lifecycle.ViewModel
-import com.androidhelpers.SharedPreferenceProvider
+import com.imagedemo.database.dao.UnSplashDao
 import com.imagedemo.helpers.processRequest
+import com.imagedemo.model.UnSplashModel
 import com.imagedemo.netwrok.IUnSplash
 import io.reactivex.disposables.CompositeDisposable
 import timber.log.Timber
 
 class UnSplashViewModel(
     private val unSplashService: IUnSplash,
-    private val sharedPreferenceProvider: SharedPreferenceProvider
+    private val unSplashDao: UnSplashDao
 ) : ViewModel() {
 
     private val compositeDisposable: CompositeDisposable = CompositeDisposable()
 
-    fun getPhotos(callback : ApiResult) {
+    fun getPhotos(callback: ApiResult) {
         compositeDisposable.add(unSplashService.getPhotos()
             .processRequest(
                 {
@@ -25,9 +26,14 @@ class UnSplashViewModel(
                 }
             ))
     }
+
+    fun saveAll(unSplashList: List<UnSplashModel>?) = unSplashDao.insertAll(unSplashList)
+
+    fun getAllDataFromDatabase(): List<UnSplashModel> = unSplashDao.getAll()
+
 }
 
 interface ApiResult {
-    fun onSuccess(data: Any)
+    fun onSuccess(data: Any?)
     fun onError(error: String?)
 }
