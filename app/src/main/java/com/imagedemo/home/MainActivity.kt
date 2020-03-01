@@ -30,25 +30,35 @@ class MainActivity : AppCompatActivity(), ApiResult {
 
         when {
             NetworkHelper.isNetworkConnected(this) -> unSplashViewModel.getPhotos(this)
-            else -> Toast.makeText(this, "No Internet!", Toast.LENGTH_SHORT).show()
+            else -> {
+                Toast.makeText(this, "No Internet!", Toast.LENGTH_SHORT).show()
+                setAdapter(unSplashViewModel.getAllDataFromDatabase())
+            }
         }
     }
 
     override fun onSuccess(data: Any?) {
-        unSplashPhototsAdapter.items = data as MutableList<UnSplashModel>
-        unSplashPhototsAdapter.notifyDataSetChanged()
-
-
-        for (unSplash in data) {
+        for (unSplash in data as MutableList<UnSplashModel>) {
             try {
                 unSplashViewModel.save(unSplash)
             } catch (e: Exception) {
                 Toast.makeText(this, "${e.message}", Toast.LENGTH_SHORT).show()
             }
         }
+        setAdapter(unSplashViewModel.getAllDataFromDatabase())
+    }
+
+    private fun setAdapter(unSplashList: MutableList<UnSplashModel>) {
+        unSplashPhototsAdapter.items = unSplashList
+        unSplashPhototsAdapter.notifyDataSetChanged()
     }
 
     override fun onError(error: String?) {
         Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        unSplashViewModel.dispose()
     }
 }

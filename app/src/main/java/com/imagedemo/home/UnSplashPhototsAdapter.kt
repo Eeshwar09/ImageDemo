@@ -23,11 +23,9 @@ class UnSplashPhototsAdapter : RecyclerView.Adapter<UnSplashPhotoViewHolder>() {
         return UnSplashPhotoViewHolder(dataBinding)
     }
 
-    override fun getItemCount(): Int {
-        return items.size
-    }
+    override fun getItemCount(): Int = items.size
 
-    override fun onBindViewHolder(holder: UnSplashPhotoViewHolder, position: Int) {
-        holder.bind(context,items[position])
-    }
+    override fun onBindViewHolder(holder: UnSplashPhotoViewHolder, position: Int) =
+        holder.bind(context, items[position])
+
 }

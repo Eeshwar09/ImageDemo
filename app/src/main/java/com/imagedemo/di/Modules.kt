@@ -15,16 +15,5 @@ val myModule =
             SharedPreferenceProvider(get())
         }
 
-        single {
-            Room.databaseBuilder(androidContext(), UnSplashDatabase::class.java, "un_splash-db")
-                .allowMainThreadQueries()
-                .fallbackToDestructiveMigration()
-                .build()
-        }
-
-        single {
-            get<UnSplashDatabase>().unSplashDao()
-        }
-
         viewModel { UnSplashViewModel(unSplashService = get(), unSplashDao = get()) }
     }

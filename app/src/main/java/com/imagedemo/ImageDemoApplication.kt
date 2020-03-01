@@ -16,7 +16,7 @@ class ImageDemoApplication : Application(){
         startKoin {
             androidContext(this@ImageDemoApplication)
             androidLogger()
-            modules(listOf(myModule, retrofitModule))
+            modules(listOf(myModule, retrofitModule, roomDatabaseModule))
         }
     }
 }

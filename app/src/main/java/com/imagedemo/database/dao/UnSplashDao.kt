@@ -10,7 +10,7 @@ import com.imagedemo.model.UnSplashModel
 interface UnSplashDao {
 
     @Query("SELECT * FROM unsplash_data")
-    fun getAll(): List<UnSplashModel>
+    fun getAll(): MutableList<UnSplashModel>
 
     @Insert
     fun insert(vararg unSplash: UnSplashModel?)

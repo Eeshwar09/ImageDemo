@@ -27,11 +27,37 @@ class UnSplashViewModel(
             ))
     }
 
+    fun likePhoto(photoId: String, callback: ApiResult) {
+        compositeDisposable.add(unSplashService.likePhoto(photoId)
+            .processRequest(
+                {
+                    callback.onSuccess(it)
+                }, { err ->
+                    Timber.d(err)
+                    callback.onError(err)
+                }
+            ))
+    }
+
+    fun unLikePhoto(photoId: String, callback: ApiResult) {
+        compositeDisposable.add(unSplashService.unLikePhoto(photoId)
+            .processRequest(
+                {
+                    callback.onSuccess(it)
+                }, { err ->
+                    Timber.d(err)
+                    callback.onError(err)
+                }
+            ))
+    }
+
     fun saveAll(unSplashList: List<UnSplashModel>?) = unSplashDao.insertAll(unSplashList)
 
-    fun save(unSplash : UnSplashModel) = unSplashDao.insert(unSplash)
+    fun save(unSplash: UnSplashModel) = unSplashDao.insert(unSplash)
 
-    fun getAllDataFromDatabase(): List<UnSplashModel> = unSplashDao.getAll()
+    fun getAllDataFromDatabase(): MutableList<UnSplashModel> = unSplashDao.getAll()
+
+    fun dispose() = compositeDisposable.dispose()
 
 }
 

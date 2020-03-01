@@ -8,9 +8,20 @@ import com.imagedemo.R
 
 @BindingAdapter("android:src")
 fun setImageUrl(view: ImageView, url: String) {
-    Glide.with(view.context).load(url)
-        .placeholder(R.mipmap.ic_launcher_round)
-        .into(view)
+    when (view.id) {
+        R.id.imageIcon -> {
+            Glide.with(view.context).load(url)
+                .placeholder(R.mipmap.ic_launcher_round)
+                .circleCrop()
+                .into(view)
+        }
+        else -> {
+            Glide.with(view.context).load(url)
+                .placeholder(R.mipmap.ic_launcher_round)
+                .into(view)
+        }
+    }
+
 }
 
 @BindingAdapter("android:src")

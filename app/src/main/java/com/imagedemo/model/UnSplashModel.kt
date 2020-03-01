@@ -2,6 +2,7 @@ package com.imagedemo.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.io.Serializable
 
 @Entity(tableName = "unsplash_data")
 data class UnSplashModel(
@@ -23,7 +24,7 @@ data class UnSplashModel(
     val urls: Urls?,
     val user: User?,
     val width: Int?
-)
+) : Serializable
 
 @Entity(tableName = "links")
 data class Links(
@@ -31,14 +32,14 @@ data class Links(
     val download_location: String?,
     val html: String?,
     val self: String?
-)
+): Serializable
 
 @Entity(tableName = "sponsorship")
 data class Sponsorship(
     val impression_urls: List<String>?,
     val sponsor: Sponsor?,
     val tagline: String?
-)
+): Serializable
 
 @Entity(tableName = "sponsor")
 data class Sponsor(
@@ -59,7 +60,7 @@ data class Sponsor(
     val twitter_username: String?,
     val updated_at: String?,
     val username: String?
-)
+): Serializable
 
 @Entity(tableName = "linkx")
 data class LinksX(
@@ -70,14 +71,14 @@ data class LinksX(
     val photos: String?,
     val portfolio: String?,
     val self: String?
-)
+): Serializable
 
 @Entity(tableName = "profile_image")
 data class ProfileImage(
     val large: String?,
     val medium: String?,
     val small: String?
-)
+): Serializable
 
 @Entity(tableName = "urls")
 data class Urls(
@@ -86,7 +87,7 @@ data class Urls(
     val regular: String?,
     val small: String?,
     val thumb: String?
-)
+): Serializable
 
 @Entity(tableName = "user")
 data class User(
@@ -107,7 +108,7 @@ data class User(
     val twitter_username: String?,
     val updated_at: String?,
     val username: String?
-)
+): Serializable
 
 @Entity(tableName = "linkxx")
 data class LinksXX(
@@ -118,11 +119,11 @@ data class LinksXX(
     val photos: String?,
     val portfolio: String?,
     val self: String?
-)
+): Serializable
 
 @Entity(tableName = "profile_imagex")
 data class ProfileImageX(
     val large: String?,
     val medium: String?,
     val small: String?
-)
+): Serializable
