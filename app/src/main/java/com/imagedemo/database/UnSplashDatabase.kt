@@ -7,7 +7,7 @@ import com.imagedemo.database.dao.UnSplashDao
 import com.imagedemo.helpers.Converters
 import com.imagedemo.model.UnSplashModel
 
-@Database(entities = [UnSplashModel::class], version = 1)
+@Database(entities = [UnSplashModel::class], version = 1, exportSchema = true)
 @TypeConverters(Converters::class)
 abstract class UnSplashDatabase : RoomDatabase() {
     abstract fun unSplashDao(): UnSplashDao

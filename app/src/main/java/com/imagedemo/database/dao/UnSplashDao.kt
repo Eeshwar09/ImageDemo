@@ -13,7 +13,7 @@ interface UnSplashDao {
     fun getAll(): List<UnSplashModel>
 
     @Insert
-    fun insert(vararg unSplash: UnSplashModel)
+    fun insert(vararg unSplash: UnSplashModel?)
 
     @Insert(onConflict = REPLACE)
     fun insertAll(unSplashList: List<UnSplashModel>?)

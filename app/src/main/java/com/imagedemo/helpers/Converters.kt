@@ -13,7 +13,7 @@ import com.imagedemo.model.User
 object Converters {
     @TypeConverter
     @JvmStatic
-    fun fromString(value: String): MutableList<Any> {
+    fun fromString(value: String): MutableList<Any>? {
         val listType = object : TypeToken<MutableList<Any>>() {
         }.type
         return Gson().fromJson(value, listType)
@@ -21,38 +21,38 @@ object Converters {
 
     @TypeConverter
     @JvmStatic
-    fun fromArrayList(list: MutableList<Any>): String = Gson().toJson(list)
+    fun fromArrayList(list: MutableList<Any>?): String = Gson().toJson(list)
 
     @TypeConverter
     @JvmStatic
-    fun jsonToLinks(value: String): Links = JsonHelper.jsonToKt(value)
+    fun jsonToLinks(value: String?): Links? = value?.let { JsonHelper.jsonToKt(it) }
 
     @TypeConverter
     @JvmStatic
-    fun linksToJson(value: Links): String = JsonHelper.KtToJson(value)
+    fun linksToJson(value: Links?): String? = value?.let { JsonHelper.KtToJson(it) }
 
     @TypeConverter
     @JvmStatic
-    fun jsonToSponsorship(value: String): Sponsorship = JsonHelper.jsonToKt(value)
+    fun jsonToSponsorship(value: String?): Sponsorship? = value?.let { JsonHelper.jsonToKt(it) }
 
     @TypeConverter
     @JvmStatic
-    fun sponsorshipToJson(value: Sponsorship): String = JsonHelper.KtToJson(value)
+    fun sponsorshipToJson(value: Sponsorship?): String? = value?.let { JsonHelper.KtToJson(it) }
 
     @TypeConverter
     @JvmStatic
-    fun jsonToUrls(value: String): Urls = JsonHelper.jsonToKt(value)
+    fun jsonToUrls(value: String?): Urls? = value?.let { JsonHelper.jsonToKt(it) }
 
     @TypeConverter
     @JvmStatic
-    fun urlsToJson(value: Urls): String = JsonHelper.KtToJson(value)
+    fun urlsToJson(value: Urls?): String? = value?.let { JsonHelper.KtToJson(it) }
 
     @TypeConverter
     @JvmStatic
-    fun jsonToUser(value: String): User = JsonHelper.jsonToKt(value)
+    fun jsonToUser(value: String?): User? = value?.let { JsonHelper.jsonToKt(it) }
 
     @TypeConverter
     @JvmStatic
-    fun userToJson(value: User): String = JsonHelper.KtToJson(value)
+    fun userToJson(value: User?): String? = value?.let { JsonHelper.KtToJson(it) }
 
 }

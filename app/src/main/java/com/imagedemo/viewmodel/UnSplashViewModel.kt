@@ -29,6 +29,8 @@ class UnSplashViewModel(
 
     fun saveAll(unSplashList: List<UnSplashModel>?) = unSplashDao.insertAll(unSplashList)
 
+    fun save(unSplash : UnSplashModel) = unSplashDao.insert(unSplash)
+
     fun getAllDataFromDatabase(): List<UnSplashModel> = unSplashDao.getAll()
 
 }

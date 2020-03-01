@@ -11,7 +11,6 @@ import com.imagedemo.viewmodel.ApiResult
 import com.imagedemo.viewmodel.UnSplashViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import timber.log.Timber
 
 class MainActivity : AppCompatActivity(), ApiResult {
 
@@ -39,14 +38,13 @@ class MainActivity : AppCompatActivity(), ApiResult {
         unSplashPhototsAdapter.items = data as MutableList<UnSplashModel>
         unSplashPhototsAdapter.notifyDataSetChanged()
 
-        try {
-            unSplashViewModel.saveAll(data)
-        } catch (e: Exception) {
-            Toast.makeText(this, "${e.message}", Toast.LENGTH_SHORT).show()
-        }
 
-        for (data in unSplashViewModel.getAllDataFromDatabase()) {
-            Timber.d(data.alt_description)
+        for (unSplash in data) {
+            try {
+                unSplashViewModel.save(unSplash)
+            } catch (e: Exception) {
+                Toast.makeText(this, "${e.message}", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
