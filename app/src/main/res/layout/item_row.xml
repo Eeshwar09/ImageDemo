@@ -23,49 +23,46 @@
 
             <TextView
                 android:id="@+id/ImageTitle"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:elevation="2dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="@{unSplashModel.alt_description}"
+                android:textColor="@color/white"
                 android:textSize="16sp"
-                android:textColor="@color/colorPrimary"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:text="Title"
-                android:text="@{unSplashModel.alt_description}"/>
-
-            <ImageView
-                android:id="@+id/playIcon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:src="@drawable/ic_play"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                tools:text="Title" />
 
             <ImageView
                 android:id="@+id/image"
-                android:layout_width="match_parent"
-                android:layout_height="400dp"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"
+                android:src="@{unSplashModel.urls.raw}"
                 app:layout_constraintBottom_toTopOf="@+id/LL"
                 app:layout_constraintDimensionRatio="H,16:9"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_weight="6" />
+                tools:src="@mipmap/ic_launcher" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/LL"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="16dp"
+                android:layout_margin="5dp"
                 android:orientation="horizontal"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/image"
-                app:layout_constraintVertical_weight="4">
+                app:layout_constraintTop_toBottomOf="@+id/image">
 
                 <ImageView
                     android:id="@+id/imageIcon"
@@ -77,12 +74,17 @@
 
                 <TextView
                     android:id="@+id/name"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    tools:text="Title"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="4dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="@{unSplashModel.user.name}"
+                    android:textSize="16sp"
                     android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@id/messageIcon"
                     app:layout_constraintStart_toEndOf="@+id/imageIcon"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:text="Title" />
@@ -91,9 +93,13 @@
                     android:id="@+id/desc"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="10dp"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="4dp"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:text="@{unSplashModel.user.bio}"
+                    android:textSize="12sp"
                     android:textStyle="italic"
                     app:layout_constraintBottom_toTopOf="@+id/hashTag"
                     app:layout_constraintEnd_toStartOf="@+id/messageIcon"
@@ -119,7 +125,7 @@
                     android:layout_marginBottom="10dp"
                     android:src="@drawable/ic_unlike"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/heading" />
+                    app:layout_constraintTop_toBottomOf="@+id/messageIcon" />
 
                 <ImageView
                     android:id="@+id/shareIcon"
