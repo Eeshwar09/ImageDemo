@@ -2,8 +2,8 @@ package com.imagedemo.home
 
 import android.os.Bundle
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.imagedemo.BaseActivity
 import com.imagedemo.R
 import com.imagedemo.helpers.NetworkHelper
 import com.imagedemo.model.UnSplashModel
@@ -12,7 +12,7 @@ import com.imagedemo.viewmodel.UnSplashViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class MainActivity : AppCompatActivity(), ApiResult {
+class MainActivity : BaseActivity(), ApiResult {
 
     val unSplashViewModel by viewModel<UnSplashViewModel>()
     private val unSplashPhototsAdapter: UnSplashPhototsAdapter by lazy { UnSplashPhototsAdapter() }
@@ -35,6 +35,9 @@ class MainActivity : AppCompatActivity(), ApiResult {
                 setAdapter(unSplashViewModel.getAllDataFromDatabase())
             }
         }
+
+        setUpToolBar(null)
+
     }
 
     override fun onSuccess(data: Any?) {
@@ -45,6 +48,11 @@ class MainActivity : AppCompatActivity(), ApiResult {
                 Toast.makeText(this, "${e.message}", Toast.LENGTH_SHORT).show()
             }
         }
+        setAdapter(unSplashViewModel.getAllDataFromDatabase())
+    }
+
+    override fun onResume() {
+        super.onResume()
         setAdapter(unSplashViewModel.getAllDataFromDatabase())
     }
 

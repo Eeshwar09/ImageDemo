@@ -5,7 +5,10 @@
     android:layout_height="match_parent"
     tools:context=".home.MainActivity">
 
+    <include layout="@layout/toolbar"></include>
+
     <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginTop="?actionBarSize"
         android:id="@+id/unsplash_photos_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
